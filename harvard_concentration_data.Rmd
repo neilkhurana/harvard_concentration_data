@@ -1,0 +1,90 @@
+---
+title: "Changing Student Concentration Composition at Harvard College"
+author: "Neil Khurana"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readxl)
+library(ggplot2)
+library(janitor)
+library(plotly)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r concentrations, echo = FALSE}
+concentrations <- read_xlsx("concentrations_h.xlsx") %>% 
+  gather(Year, Count, 2:11) %>% 
+  clean_names()
+```
+
+```{r hard_sciences, echo = FALSE}
+# Filtered to hard science concentrations only
+hard_sciences <- concentrations %>% 
+  filter(concentration %in% c("Molecular and Cellular Biology", "Chemistry", "Physics"))
+
+# Stacked bar graph
+hard_sciences_plot<- 
+  ggplot(hard_sciences, aes(x = year, y = count, fill = concentration, label = count)) + 
+  geom_bar(stat = "identity") +
+  xlab("Year") +
+  ylab("Number of Concentrators") +
+  geom_text(size = 3, position = position_stack(vjust = 0.5)) +
+  scale_fill_manual(values = c("green","limegreen", "darkgreen")); 
+  plot(hard_sciences_plot)
+```
+
+```{R applied_stem, echo = FALSE}
+# Data filtered to applied STEM concentrations only
+applied_stem <- concentrations %>% 
+  filter(concentration %in% c("Statistics", "Computer Science", "Applied Mathematics"))
+
+# Stacked bar graph
+applied_stem_plot<- 
+  ggplot(applied_stem, aes(x = year, y = count, fill = concentration, label = count)) + 
+  geom_bar(stat = "identity") + 
+  xlab("Year") +
+  ylab("Number of Concentrators") +
+  geom_text(size = 3.5, position = position_stack(vjust = 0.5)) +
+  scale_fill_manual(values = c("indianred1","red", "darkred"));
+  plot(applied_stem_plot)
+```
+
+```{R humanities, echo = FALSE}
+# Data filtered to humanities concentrations only
+humanities <- concentrations %>% 
+  filter(concentration %in% c("English", "Comparative Literature"))
+
+# Stacked bar graph
+humanities_plot<- 
+  ggplot(humanities, aes(x = year, y = count, fill = concentration, label = count)) + 
+  geom_bar(stat = "identity") +
+  xlab("Year") +
+  ylab("Number of Concentrators") +
+  geom_text(size = 3, position = position_stack(vjust = 0.5)) +
+  scale_fill_manual(values = c("plum3", "plum4"));
+  plot(humanities_plot)
+```
+
+```{R social_sciences, echo = FALSE}
+# Filtered to social science concentrations
+social_sciences <- concentrations %>% 
+  filter(concentration %in% c("Economics","Government", "Psychology"))
+
+# Stacked bar graph
+social_sciences_plot <- 
+  ggplot(social_sciences, aes(x = year, y = count, fill = concentration, label = count)) + 
+  geom_bar(stat = "identity") + 
+  xlab("Year") +
+  ylab("Number of Concentrators") +
+  geom_text(size = 3, position = position_stack(vjust = 0.5)) +
+  scale_fill_manual(values = c("deepskyblue","dodgerblue2", "dodgerblue4"));
+  plot(social_sciences_plot)
+```
