@@ -1,8 +1,6 @@
 library(tidyverse)
-library(readr)
 library(readxl)
 library(ggplot2)
-library(knitr)
 library(janitor)
 
 concentrations <- read_xlsx("concentrations_h.xlsx") %>% 
