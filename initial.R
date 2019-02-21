@@ -14,7 +14,8 @@ hard_sciences_plot<-
   geom_bar(stat = "identity") +
   xlab("Year") +
   ylab("Number of Concentrators") +
-  geom_text(size = 3, position = position_stack(vjust = 0.5)); 
+  geom_text(size = 3, position = position_stack(vjust = 0.5)) +
+  scale_fill_manual(values = c("green","limegreen", "darkgreen")); 
   plot(hard_sciences_plot)
 
 applied_stem <- concentrations %>% 
@@ -24,7 +25,8 @@ applied_stem_plot<-
   geom_bar(stat = "identity")+
   xlab("Year") +
   ylab("Number of Concentrators") +
-  geom_text(size = 3, position = position_stack(vjust = 0.5));
+  geom_text(size = 3.5, position = position_stack(vjust = 0.5)) +
+  scale_fill_manual(values = c("indianred1","red", "darkred"));
   plot(applied_stem_plot)
 
 
@@ -35,7 +37,8 @@ humanities_plot<-
   geom_bar(stat = "identity") +
   xlab("Year") +
   ylab("Number of Concentrators") +
-  geom_text(size = 3, position = position_stack(vjust = 0.5));
+  geom_text(size = 3, position = position_stack(vjust = 0.5)) +
+  scale_fill_manual(values = c("plum3", "plum4"));
   plot(humanities_plot)
 
 social_sciences <- concentrations %>% 
@@ -45,5 +48,6 @@ social_sciences_plot <-
   geom_bar(stat = "identity") + 
   xlab("Year") +
   ylab("Number of Concentrators") +
-  geom_text(size = 3, position = position_stack(vjust = 0.5));
+  geom_text(size = 3, position = position_stack(vjust = 0.5)) +
+  scale_fill_manual(values = c("deepskyblue","dodgerblue2", "dodgerblue4"));
   plot(social_sciences_plot)
