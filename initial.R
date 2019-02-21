@@ -13,5 +13,9 @@ hard_sciences_plot<-
   ggplot(hard_sciences, aes(x = Year, y = Count, fill = Concentration)) + 
   geom_bar(stat = "identity"); plot(hard_sciences_plot)
 
-
+applied_stem <- concentrations %>% 
+  filter(Concentration %in% c("Statistics", "Computer Science", "Applied Mathematics*"))
+applied_stem_plot<- 
+  ggplot(applied_stem, aes(x = Year, y = Count, fill = Concentration)) + 
+  geom_bar(stat = "identity"); plot(applied_stem_plot)
 
