@@ -53,11 +53,15 @@ applied_stem <- concentrations %>%
 applied_stem_plot<- 
   ggplot(applied_stem, aes(x = year, y = count, fill = concentration, label = count)) + 
   geom_bar(stat = "identity") + 
+# Labeled axis
   xlab("Year") +
   ylab("Number of Concentrators") +
+# Add number of concentrators to each bar
   geom_text(size = 3.5, position = position_stack(vjust = 0.5)) +
+# Set colors of each bar
   scale_fill_manual(values = c("indianred1","red", "darkred"));
   plot(applied_stem_plot)
+# Repeated for all other figures
 ```
 
 #### Humanities Concentrators
