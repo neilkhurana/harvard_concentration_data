@@ -17,7 +17,7 @@ library(plotly)
 
 During November of each year, sophomores at the college are required to report their intended concentration to the Registrar. Here we have analyzed ten years of data to find out the concentrations that are growing, shrinking or rather steady. Our focus group for this analysis is divided into four categories: hard sciences, applied STEM, humanities, and social sciences. 
 
-Major trends were noticable for each category. Applied science, technology, engineering and math concentrators have rapidly risen since 2008, whereas humanities concentrators are on the decline. Social science concentrations—Economics, Government, and Psychology—have contiinued to reamin the post popular and have seen no significant fluctuations.Same goes for the Hard Science concentrations, which include chemistry and physics.
+Major trends were noticable for each category. Applied science, technology, engineering and math concentrators have rapidly risen since 2008, whereas humanities concentrators are on the decline. Social science concentrations—Economics, Government, and Psychology—have continued to reamin the post popular and have seen no significant fluctuations. Same goes for the Hard Science concentrations, which includes chemistry and physics.
 
 ```{r concentrations, echo = FALSE}
 concentrations <- read_xlsx("concentrations_h.xlsx") %>% 
