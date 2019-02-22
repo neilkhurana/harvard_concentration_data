@@ -1,5 +1,5 @@
 ---
-title: "Changing Student Concentration Composition at Harvard College"
+title: "The Changing Student Concentration Composition at Harvard College"
 author: "Neil Khurana"
 output: html_document
 ---
@@ -13,17 +13,18 @@ library(janitor)
 library(plotly)
 ```
 
-## R Markdown
+# Overview
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+During November of each year, sophomores at the college are required to report their intended concentration to the Registrar. Here we have analyzed ten years of data to find out the concentrations that are growing, shrinking or rather steady. Our focus group for this analysis is divided into four categories: hard sciences, applied STEM, humanities, and social sciences. 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Major trends were noticable for each category. Applied science, technology, engineering and math concentrators have rapidly risen since 2008, whereas humanities concentrators are on the decline. Social science concentrations—Economics, Government, and Psychology—have contiinued to reamin the post popular and have seen no significant fluctuations.Same goes for the Hard Science concentrations, which include chemistry and physics.
 
 ```{r concentrations, echo = FALSE}
 concentrations <- read_xlsx("concentrations_h.xlsx") %>% 
   gather(Year, Count, 2:11) %>% 
   clean_names()
 ```
+#### Hard Science Concentrators
 
 ```{r hard_sciences, echo = FALSE}
 # Filtered to hard science concentrations only
@@ -37,9 +38,11 @@ hard_sciences_plot<-
   xlab("Year") +
   ylab("Number of Concentrators") +
   geom_text(size = 3, position = position_stack(vjust = 0.5)) +
-  scale_fill_manual(values = c("green","limegreen", "darkgreen")); 
+  scale_fill_manual(values = c("limegreen", "chartreuse4", "darkgreen")); 
   plot(hard_sciences_plot)
 ```
+
+#### Applied STEM Concentrators
 
 ```{R applied_stem, echo = FALSE}
 # Data filtered to applied STEM concentrations only
@@ -57,6 +60,8 @@ applied_stem_plot<-
   plot(applied_stem_plot)
 ```
 
+#### Humanities Concentrators
+
 ```{R humanities, echo = FALSE}
 # Data filtered to humanities concentrations only
 humanities <- concentrations %>% 
@@ -72,6 +77,8 @@ humanities_plot<-
   scale_fill_manual(values = c("plum3", "plum4"));
   plot(humanities_plot)
 ```
+
+#### Social Sciences Concentrators
 
 ```{R social_sciences, echo = FALSE}
 # Filtered to social science concentrations
